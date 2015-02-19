@@ -1,0 +1,31 @@
+Changelog
+===================================
+    * pyA13 0.1.12 (2013-05-15)
+        * Rename to pySUNXI
+
+    * pyA13 0.1.8 (2013-03-05)
+        * Added bit-bang SPI
+        
+    * pyA13 0.1.8 (2013-03-05)
+        * Added blink.py demo
+    
+    * pyA13 0.1.7 (2013-03-05)
+        * Missed very tiny bugs
+
+    * pyA13 0.1.6 (2013-03-05)
+        * Fixed bugs with functions
+        * Updated FIXED.txt
+        * Project ready for alpha :)
+    
+    * pyA13 0.1.5 (2013-03-01)
+        * Fixed bug with initialization
+
+
+    * pyA13 0.1.4 (2013-03-01)
+        * Fixed some setup bugs
+        * Removed bugged methods
+        * Fixed readme
+
+    * pyA13 0.1.0 (2013-03-01)
+        * Initial release
+
