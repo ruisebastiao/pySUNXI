@@ -62,6 +62,22 @@ static PyObject *low;
 #define PD26    SUNXI_GPD(26)
 #define PD27    SUNXI_GPD(27)
 
+
+#define PG0    SUNXI_GPG(0)
+#define PG1    SUNXI_GPG(1)
+#define PG2    SUNXI_GPG(2)
+#define PG3    SUNXI_GPG(3)
+#define PG4    SUNXI_GPG(4)
+#define PG5    SUNXI_GPG(5)
+#define PG6    SUNXI_GPG(6)
+#define PG7    SUNXI_GPG(7)
+#define PG8    SUNXI_GPG(8)
+#define PG9    SUNXI_GPG(9)
+#define PG10    SUNXI_GPG(10)
+#define PG11    SUNXI_GPG(11)
+
+
+
 #define MISO    SUNXI_GPE(3)
 #define MOSI    SUNXI_GPE(2)
 #define SCK     SUNXI_GPE(1)
@@ -255,6 +271,19 @@ PyMODINIT_FUNC initSUNXI_GPIO(void) {
     PyModule_AddObject(module, "PD8", Py_BuildValue("i", PD8));
     PyModule_AddObject(module, "PD9", Py_BuildValue("i", PD9));
 
+    PyModule_AddObject(module, "PG0", Py_BuildValue("i", PG0));
+    PyModule_AddObject(module, "PG1", Py_BuildValue("i", PG1));
+    PyModule_AddObject(module, "PG2", Py_BuildValue("i", PG2));
+    PyModule_AddObject(module, "PG3", Py_BuildValue("i", PG3));
+    PyModule_AddObject(module, "PG4", Py_BuildValue("i", PG4));
+    PyModule_AddObject(module, "PG5", Py_BuildValue("i", PG5));
+    PyModule_AddObject(module, "PG6", Py_BuildValue("i", PG6));
+    PyModule_AddObject(module, "PG7", Py_BuildValue("i", PG7));
+    PyModule_AddObject(module, "PG8", Py_BuildValue("i", PG8));
+    PyModule_AddObject(module, "PG9", Py_BuildValue("i", PG9));
+    PyModule_AddObject(module, "PG10", Py_BuildValue("i", PG10));
+    PyModule_AddObject(module, "PG11", Py_BuildValue("i", PG11));
+    
     PyModule_AddObject(module, "MISO", Py_BuildValue("i", MISO));
     PyModule_AddObject(module, "MOSI", Py_BuildValue("i", MOSI));
     PyModule_AddObject(module, "SCK", Py_BuildValue("i", SCK));
