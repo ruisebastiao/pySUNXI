@@ -79,3 +79,4 @@ Where modes are:
 Thanks also to: bianchina3
 
 
+http://docs.cubieboard.org/tutorials/common/using_python_program_control_gpios
