@@ -106,11 +106,6 @@ static int module_setup(void) {
     return SETUP_OK;
 }
 
-
-
-
-
-
 static PyObject* py_output(PyObject* self, PyObject* args) {
     int gpio;
     int value;
@@ -168,33 +163,30 @@ static PyObject* py_setcfg(PyObject* self, PyObject* args) {
 
     Py_RETURN_NONE;
 }
+
 static PyObject* py_getcfg(PyObject* self, PyObject* args) {
     int gpio;
     int result;
-
 
     if(!PyArg_ParseTuple(args, "i", &gpio))
         return NULL;
 
     result = sunxi_gpio_get_cfgpin(gpio);
 
-
     return Py_BuildValue("i", result);
-
-
 }
-static PyObject* py_init(PyObject* self, PyObject* args) {
 
+static PyObject* py_init(PyObject* self, PyObject* args) {
     module_setup();
 
     Py_RETURN_NONE;
 }
-static PyObject* py_cleanup(PyObject* self, PyObject* args) {
 
+static PyObject* py_cleanup(PyObject* self, PyObject* args) {
     sunxi_gpio_cleanup();
+
     Py_RETURN_NONE;
 }
-
 
 PyMethodDef module_methods[] = {
     {"init", py_init, METH_NOARGS, "Initialize module"},
@@ -205,6 +197,7 @@ PyMethodDef module_methods[] = {
     {"input", py_input, METH_VARARGS, "Get input state"},
     {NULL, NULL, 0, NULL}
 };
+
 #if PY_MAJOR_VERSION >= 3
 static struct PyModuleDef module_def = {
     PyModuleDef_HEAD_INIT,
@@ -214,25 +207,24 @@ static struct PyModuleDef module_def = {
     module_methods
 };
 #endif
-PyMODINIT_FUNC initSUNXI_GPIO(void) {
+
+PyMODINIT_FUNC
+PyInit_SUNXI_GPIO(void) {
     PyObject* module = NULL;
 
-
 #if PY_MAJOR_VERSION >= 3
-    module = PyModule_Create(&module_methods);
+    module = PyModule_Create(&module_def);
 #else
     module = Py_InitModule("SUNXI_GPIO", module_methods);
 #endif
 
 
-    if(module == NULL)
+    if (module == NULL)
 #if PY_MAJOR_VERSION >= 3
-        return module;
+        return NULL;
 #else
         return;
 #endif
-
-
 
     SetupException = PyErr_NewException("PySUNXI.SetupException", NULL, NULL);
     PyModule_AddObject(module, "SetupException", SetupException);
@@ -240,8 +232,6 @@ PyMODINIT_FUNC initSUNXI_GPIO(void) {
     PyModule_AddObject(module, "OutputException", OutputException);
     InputException = PyErr_NewException("PySUNXI.InputException", NULL, NULL);
     PyModule_AddObject(module, "InputException", InputException);
-
-
 
     high = Py_BuildValue("i", HIGH);
     PyModule_AddObject(module, "HIGH", high);
@@ -257,8 +247,6 @@ PyMODINIT_FUNC initSUNXI_GPIO(void) {
 
     per = Py_BuildValue("i", PER);
     PyModule_AddObject(module, "PER", per);
-
-
 
     PyModule_AddObject(module, "PD0", Py_BuildValue("i", PD0));
     PyModule_AddObject(module, "PD1", Py_BuildValue("i", PD1));
@@ -289,18 +277,13 @@ PyMODINIT_FUNC initSUNXI_GPIO(void) {
     PyModule_AddObject(module, "SCK", Py_BuildValue("i", SCK));
     PyModule_AddObject(module, "CS", Py_BuildValue("i", CS));
     
-    if(Py_AtExit(sunxi_gpio_cleanup) != 0){
-        
+    if(Py_AtExit(sunxi_gpio_cleanup) != 0) {
         sunxi_gpio_cleanup();
-        
+    }
+
 #if PY_MAJOR_VERSION >= 3
-        return NULL;
+        return module;
 #else
         return;
 #endif
-    }
-
-
-
 }
-
